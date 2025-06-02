@@ -1,0 +1,15 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    petstore-oas:
+        inputs:
+            - location: openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/playground-wnq/playground-testing/petstore-oas
+targets:
+    petstore:
+        target: mcp-typescript
+        source: petstore-oas
+        publish:
+            npm:
+                token: $npm_token
