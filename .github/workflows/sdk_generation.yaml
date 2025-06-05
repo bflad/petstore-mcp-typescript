@@ -23,7 +23,7 @@ permissions:
       - unlabeled
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@4413cf2ced5fc72467589b177d15bcbd4c13e7c9
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@bflad/gen-1422-feature-initial-mcp-typescript-handling-in-sdk-generation
     with:
       force: ${{ github.event.inputs.force }}
       mode: pr
