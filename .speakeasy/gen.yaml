@@ -18,12 +18,14 @@ generation:
     oAuth2PasswordEnabled: true
   sdkHooksConfigAccess: true
 mcp-typescript:
-  version: 0.0.1
+  version: 0.0.2
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   author: Speakeasy
+  baseErrorName: PetstoreError
+  defaultErrorName: PetstoreDefaultError
   inputModelSuffix: input
   outputModelSuffix: output
   packageName: mcp
