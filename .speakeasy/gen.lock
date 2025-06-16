@@ -3,10 +3,11 @@ id: 3a58bd08-2c6c-4f53-99c8-2b73bd947847
 management:
   docChecksum: 0a12d360ad302f1b31cf3e896bf9a61b
   docVersion: 1.0.0
-  speakeasyVersion: 0.0.1
-  generationVersion: 2.618.0
-  releaseVersion: 0.0.1
-  configChecksum: 730387a10564264445bed46b1d9a5611
+  speakeasyVersion: 1.563.1
+  generationVersion: 2.629.1
+  releaseVersion: 0.0.2
+  configChecksum: b2ce6fb27cf69bef5876d8563fa4f179
+  repoURL: https://github.com/bflad/petstore-mcp-typescript.git
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
