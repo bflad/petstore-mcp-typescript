@@ -1,9 +1,13 @@
 {
   "name": "mcp",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Speakeasy",
   "type": "module",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bflad/petstore-mcp-typescript.git"
+  },
   "bin": {
     "mcp": "bin/mcp-server.js"
   },
