@@ -207,12 +207,13 @@ export function match<T, E>(
     }
 
     if (!matcher) {
-      await discardResponseBody(response);
+      const body = await response.text();
       return [{
         ok: false,
         error: new APIError("Unexpected API response status or content-type", {
           response,
           request,
+          body,
         }),
       }, raw];
     }
@@ -241,7 +242,7 @@ export function match<T, E>(
         raw = await discardResponseBody(response);
         break;
       case "fail":
-        raw = await discardResponseBody(response);
+        raw = await response.text();
         break;
       default:
         encoding satisfies never;
@@ -251,7 +252,11 @@ export function match<T, E>(
     if (matcher.enc === "fail") {
       return [{
         ok: false,
-        error: new APIError("API error occurred", { response, request }),
+        error: new APIError("API error occurred", {
+          response,
+          request,
+          body: raw as string,
+        }),
       }, raw];
     }
 
@@ -263,17 +268,26 @@ export function match<T, E>(
         ...options?.extraFields,
         ...(matcher.hdrs ? { Headers: unpackHeaders(response.headers) } : null),
         ...(isPlainObject(raw) ? raw : null),
+        ContentType: response.headers.get("content-type") || "",
+        StatusCode: response.status,
+        RawResponse: response,
       };
     } else if (resultKey) {
       data = {
         ...options?.extraFields,
         ...(matcher.hdrs ? { Headers: unpackHeaders(response.headers) } : null),
         [resultKey]: raw,
+        ContentType: response.headers.get("content-type") || "",
+        StatusCode: response.status,
+        RawResponse: response,
       };
     } else {
       data = {
         ...options?.extraFields,
         ...(matcher.hdrs ? { Headers: unpackHeaders(response.headers) } : null),
+        ContentType: response.headers.get("content-type") || "",
+        StatusCode: response.status,
+        RawResponse: response,
       };
     }
 

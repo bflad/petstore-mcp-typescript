@@ -3,51 +3,56 @@ id: 3a58bd08-2c6c-4f53-99c8-2b73bd947847
 management:
   docChecksum: 0a12d360ad302f1b31cf3e896bf9a61b
   docVersion: 1.0.0
-  speakeasyVersion: 0.0.1
-  generationVersion: 2.618.0
-  releaseVersion: 0.0.1
-  configChecksum: 730387a10564264445bed46b1d9a5611
+  speakeasyVersion: 1.622.1
+  generationVersion: 2.709.0
+  releaseVersion: 0.1.0
+  configChecksum: ff4ecad12fd7d848ead0095cc8231280
+  repoURL: https://github.com/bflad/petstore-mcp-typescript.git
+  published: true
 features:
   mcp-typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.0
-    core: 0.1.0
+    core: 0.4.0
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
-    globalSecurity: 0.1.0
+    globalSecurity: 0.1.1
     globalSecurityCallbacks: 0.0.0
     globalServerURLs: 0.1.0
     responseFormat: 0.1.0
     retries: 0.1.0
-    sdkHooks: 0.1.0
+    sdkHooks: 0.2.0
 generatedFiles:
+  - .dxtignore
   - .gitattributes
   - .npmignore
   - eslint.config.mjs
+  - manifest.json
   - package.json
   - src/core.ts
-  - src/funcs/pet_addPet.ts
-  - src/funcs/pet_deletePet.ts
-  - src/funcs/pet_findPetsByStatus.ts
-  - src/funcs/pet_findPetsByTags.ts
-  - src/funcs/pet_getPetById.ts
-  - src/funcs/pet_updatePet.ts
-  - src/funcs/pet_uploadFile.ts
-  - src/funcs/store_deleteOrder.ts
-  - src/funcs/store_getInventory.ts
-  - src/funcs/store_getOrderById.ts
-  - src/funcs/store_placeOrder.ts
-  - src/funcs/user_createUser.ts
-  - src/funcs/user_createUsersWithListInput.ts
-  - src/funcs/user_deleteUser.ts
-  - src/funcs/user_getUserByName.ts
-  - src/funcs/user_loginUser.ts
-  - src/funcs/user_logoutUser.ts
-  - src/funcs/user_updateUser.ts
+  - src/funcs/petAddPet.ts
+  - src/funcs/petDeletePet.ts
+  - src/funcs/petFindPetsByStatus.ts
+  - src/funcs/petFindPetsByTags.ts
+  - src/funcs/petGetPetById.ts
+  - src/funcs/petUpdatePet.ts
+  - src/funcs/petUploadFile.ts
+  - src/funcs/storeDeleteOrder.ts
+  - src/funcs/storeGetInventory.ts
+  - src/funcs/storeGetOrderById.ts
+  - src/funcs/storePlaceOrder.ts
+  - src/funcs/userCreateUser.ts
+  - src/funcs/userCreateUsersWithListInput.ts
+  - src/funcs/userDeleteUser.ts
+  - src/funcs/userGetUserByName.ts
+  - src/funcs/userLoginUser.ts
+  - src/funcs/userLogoutUser.ts
+  - src/funcs/userUpdateUser.ts
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/files.ts
   - src/lib/http.ts
@@ -74,55 +79,55 @@ generatedFiles:
   - src/mcp-server/server.ts
   - src/mcp-server/shared.ts
   - src/mcp-server/tools.ts
-  - src/mcp-server/tools/pet_addPet.ts
-  - src/mcp-server/tools/pet_deletePet.ts
-  - src/mcp-server/tools/pet_findPetsByStatus.ts
-  - src/mcp-server/tools/pet_findPetsByTags.ts
-  - src/mcp-server/tools/pet_getPetById.ts
-  - src/mcp-server/tools/pet_updatePet.ts
-  - src/mcp-server/tools/pet_uploadFile.ts
-  - src/mcp-server/tools/store_deleteOrder.ts
-  - src/mcp-server/tools/store_getInventory.ts
-  - src/mcp-server/tools/store_getOrderById.ts
-  - src/mcp-server/tools/store_placeOrder.ts
-  - src/mcp-server/tools/user_createUser.ts
-  - src/mcp-server/tools/user_createUsersWithListInput.ts
-  - src/mcp-server/tools/user_deleteUser.ts
-  - src/mcp-server/tools/user_getUserByName.ts
-  - src/mcp-server/tools/user_loginUser.ts
-  - src/mcp-server/tools/user_logoutUser.ts
-  - src/mcp-server/tools/user_updateUser.ts
-  - src/models/components/apierrorinvalidinput.ts
-  - src/models/components/apierrornotfound.ts
-  - src/models/components/apierrorunauthorized.ts
-  - src/models/components/apiresponse.ts
-  - src/models/components/category.ts
-  - src/models/components/order.ts
-  - src/models/components/pet.ts
-  - src/models/components/security.ts
-  - src/models/components/tag.ts
-  - src/models/components/user.ts
+  - src/mcp-server/tools/petAddPet.ts
+  - src/mcp-server/tools/petDeletePet.ts
+  - src/mcp-server/tools/petFindPetsByStatus.ts
+  - src/mcp-server/tools/petFindPetsByTags.ts
+  - src/mcp-server/tools/petGetPetById.ts
+  - src/mcp-server/tools/petUpdatePet.ts
+  - src/mcp-server/tools/petUploadFile.ts
+  - src/mcp-server/tools/storeDeleteOrder.ts
+  - src/mcp-server/tools/storeGetInventory.ts
+  - src/mcp-server/tools/storeGetOrderById.ts
+  - src/mcp-server/tools/storePlaceOrder.ts
+  - src/mcp-server/tools/userCreateUser.ts
+  - src/mcp-server/tools/userCreateUsersWithListInput.ts
+  - src/mcp-server/tools/userDeleteUser.ts
+  - src/mcp-server/tools/userGetUserByName.ts
+  - src/mcp-server/tools/userLoginUser.ts
+  - src/mcp-server/tools/userLogoutUser.ts
+  - src/mcp-server/tools/userUpdateUser.ts
+  - src/models/addpetop.ts
+  - src/models/apierrorinvalidinput.ts
+  - src/models/apierrornotfound.ts
+  - src/models/apierrorunauthorized.ts
+  - src/models/apiresponse.ts
+  - src/models/category.ts
+  - src/models/createuserop.ts
+  - src/models/createuserswithlistinputop.ts
+  - src/models/deleteorderop.ts
+  - src/models/deletepetop.ts
+  - src/models/deleteuserop.ts
   - src/models/errors/apierror.ts
   - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/operations/addpet.ts
-  - src/models/operations/createuser.ts
-  - src/models/operations/createuserswithlistinput.ts
-  - src/models/operations/deleteorder.ts
-  - src/models/operations/deletepet.ts
-  - src/models/operations/deleteuser.ts
-  - src/models/operations/findpetsbystatus.ts
-  - src/models/operations/findpetsbytags.ts
-  - src/models/operations/getinventory.ts
-  - src/models/operations/getorderbyid.ts
-  - src/models/operations/getpetbyid.ts
-  - src/models/operations/getuserbyname.ts
-  - src/models/operations/loginuser.ts
-  - src/models/operations/logoutuser.ts
-  - src/models/operations/placeorder.ts
-  - src/models/operations/updatepet.ts
-  - src/models/operations/updateuser.ts
-  - src/models/operations/uploadfile.ts
+  - src/models/findpetsbystatusop.ts
+  - src/models/findpetsbytagsop.ts
+  - src/models/getinventoryop.ts
+  - src/models/getorderbyidop.ts
+  - src/models/getpetbyidop.ts
+  - src/models/getuserbynameop.ts
+  - src/models/loginuserop.ts
+  - src/models/logoutuserop.ts
+  - src/models/order.ts
+  - src/models/pet.ts
+  - src/models/placeorderop.ts
+  - src/models/security.ts
+  - src/models/tag.ts
+  - src/models/updatepetop.ts
+  - src/models/updateuserop.ts
+  - src/models/uploadfileop.ts
+  - src/models/user.ts
   - src/types/async.ts
   - src/types/blobs.ts
   - src/types/enums.ts

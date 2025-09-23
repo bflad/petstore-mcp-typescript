@@ -7,7 +7,6 @@ import { numberParser } from "@stricli/core";
 import * as z from "zod";
 import { ServerEnvironment } from "../../../lib/config.js";
 import { consoleLoggerLevels } from "../../console-logger.js";
-import { mcpScopes } from "../../scopes.js";
 
 export const startCommand = buildCommand({
   loader: async () => {
@@ -38,22 +37,10 @@ export const startCommand = buildCommand({
           return z.string().parse(value);
         },
       },
-      ...(mcpScopes.length
-        ? {
-          scope: {
-            kind: "enum",
-            brief:
-              "Mount tools/resources that match given scope (repeatable flag)",
-            values: mcpScopes,
-            variadic: true,
-            optional: true,
-          },
-        }
-        : {}),
       "api-key": {
         kind: "parsed",
         brief: "Sets the api_key auth field for the API",
-        optional: false,
+        optional: true,
         parse: (value) => {
           return z.string().parse(value);
         },

@@ -16,14 +16,22 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
+    hoistGlobalSecurity: true
   sdkHooksConfigAccess: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 mcp-typescript:
-  version: 0.0.1
+  version: 0.1.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   author: Speakeasy
+  baseErrorName: PetstoreError
+  cloudflareEnabled: false
+  defaultErrorName: PetstoreDefaultError
   inputModelSuffix: input
   outputModelSuffix: output
   packageName: mcp

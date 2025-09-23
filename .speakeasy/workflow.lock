@@ -1,18 +1,19 @@
-speakeasyVersion: 0.0.1
+speakeasyVersion: 1.622.1
 sources:
     petstore-oas:
         sourceNamespace: petstore-oas
-        sourceRevisionDigest: sha256:97b2eff2f43ce14276d28efc41ec5de8034cde61db8445f12b626e4dc88ea40e
-        sourceBlobDigest: sha256:81cfc2e66c21c8554e77c28114e76e9b348f43af7e680245f78786f373790761
+        sourceRevisionDigest: sha256:c58be3a0759f9af11318478c10c2d8f64ca895d8af99e31987348aca23101cb0
+        sourceBlobDigest: sha256:49539d4354e31fe9790e1f22040e70bffe45fb89656d972cefff47b76f28c1d3
         tags:
             - latest
+            - speakeasy-sdk-regen-1749094489
             - 1.0.0
 targets:
     petstore:
         source: petstore-oas
         sourceNamespace: petstore-oas
-        sourceRevisionDigest: sha256:97b2eff2f43ce14276d28efc41ec5de8034cde61db8445f12b626e4dc88ea40e
-        sourceBlobDigest: sha256:81cfc2e66c21c8554e77c28114e76e9b348f43af7e680245f78786f373790761
+        sourceRevisionDigest: sha256:c58be3a0759f9af11318478c10c2d8f64ca895d8af99e31987348aca23101cb0
+        sourceBlobDigest: sha256:49539d4354e31fe9790e1f22040e70bffe45fb89656d972cefff47b76f28c1d3
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -26,3 +27,6 @@ workflow:
         petstore:
             target: mcp-typescript
             source: petstore-oas
+            publish:
+                npm:
+                    token: $npm_token

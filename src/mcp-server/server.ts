@@ -13,29 +13,30 @@ import {
 } from "./resources.js";
 import { MCPScope } from "./scopes.js";
 import { createRegisterTool } from "./tools.js";
-import { tool$pet_addPet } from "./tools/pet_addPet.js";
-import { tool$pet_deletePet } from "./tools/pet_deletePet.js";
-import { tool$pet_findPetsByStatus } from "./tools/pet_findPetsByStatus.js";
-import { tool$pet_findPetsByTags } from "./tools/pet_findPetsByTags.js";
-import { tool$pet_getPetById } from "./tools/pet_getPetById.js";
-import { tool$pet_updatePet } from "./tools/pet_updatePet.js";
-import { tool$pet_uploadFile } from "./tools/pet_uploadFile.js";
-import { tool$store_deleteOrder } from "./tools/store_deleteOrder.js";
-import { tool$store_getInventory } from "./tools/store_getInventory.js";
-import { tool$store_getOrderById } from "./tools/store_getOrderById.js";
-import { tool$store_placeOrder } from "./tools/store_placeOrder.js";
-import { tool$user_createUser } from "./tools/user_createUser.js";
-import { tool$user_createUsersWithListInput } from "./tools/user_createUsersWithListInput.js";
-import { tool$user_deleteUser } from "./tools/user_deleteUser.js";
-import { tool$user_getUserByName } from "./tools/user_getUserByName.js";
-import { tool$user_loginUser } from "./tools/user_loginUser.js";
-import { tool$user_logoutUser } from "./tools/user_logoutUser.js";
-import { tool$user_updateUser } from "./tools/user_updateUser.js";
+import { tool$petAddPet } from "./tools/petAddPet.js";
+import { tool$petDeletePet } from "./tools/petDeletePet.js";
+import { tool$petFindPetsByStatus } from "./tools/petFindPetsByStatus.js";
+import { tool$petFindPetsByTags } from "./tools/petFindPetsByTags.js";
+import { tool$petGetPetById } from "./tools/petGetPetById.js";
+import { tool$petUpdatePet } from "./tools/petUpdatePet.js";
+import { tool$petUploadFile } from "./tools/petUploadFile.js";
+import { tool$storeDeleteOrder } from "./tools/storeDeleteOrder.js";
+import { tool$storeGetInventory } from "./tools/storeGetInventory.js";
+import { tool$storeGetOrderById } from "./tools/storeGetOrderById.js";
+import { tool$storePlaceOrder } from "./tools/storePlaceOrder.js";
+import { tool$userCreateUser } from "./tools/userCreateUser.js";
+import { tool$userCreateUsersWithListInput } from "./tools/userCreateUsersWithListInput.js";
+import { tool$userDeleteUser } from "./tools/userDeleteUser.js";
+import { tool$userGetUserByName } from "./tools/userGetUserByName.js";
+import { tool$userLoginUser } from "./tools/userLoginUser.js";
+import { tool$userLogoutUser } from "./tools/userLogoutUser.js";
+import { tool$userUpdateUser } from "./tools/userUpdateUser.js";
 
 export function createMCPServer(deps: {
   logger: ConsoleLogger;
   allowedTools?: string[] | undefined;
   scopes?: MCPScope[] | undefined;
+  getSDK?: () => PetstoreCore;
   serverURL?: string | undefined;
   security?: SDKOptions["security"] | undefined;
   serverIdx?: SDKOptions["serverIdx"] | undefined;
@@ -43,15 +44,23 @@ export function createMCPServer(deps: {
 }) {
   const server = new McpServer({
     name: "Petstore",
-    version: "0.0.1",
+    version: "0.1.0",
   });
 
-  const client = new PetstoreCore({
-    security: deps.security,
-    serverURL: deps.serverURL,
-    serverIdx: deps.serverIdx,
-    environment: deps.environment,
-  });
+  const getClient = deps.getSDK || (() =>
+    new PetstoreCore({
+      security: deps.security,
+      serverURL: deps.serverURL,
+      serverIdx: deps.serverIdx,
+      environment: deps.environment,
+      debugLogger: deps.logger.level === "debug"
+        ? {
+          log: (...args) => console.log(...args),
+          group: (...args) => console.group(...args),
+          groupEnd: (...args) => console.groupEnd(...args),
+        }
+        : undefined,
+    }));
 
   const scopes = new Set(deps.scopes);
 
@@ -59,39 +68,44 @@ export function createMCPServer(deps: {
   const tool = createRegisterTool(
     deps.logger,
     server,
-    client,
+    getClient,
     scopes,
     allowedTools,
   );
-  const resource = createRegisterResource(deps.logger, server, client, scopes);
+  const resource = createRegisterResource(
+    deps.logger,
+    server,
+    getClient,
+    scopes,
+  );
   const resourceTemplate = createRegisterResourceTemplate(
     deps.logger,
     server,
-    client,
+    getClient,
     scopes,
   );
-  const prompt = createRegisterPrompt(deps.logger, server, client, scopes);
+  const prompt = createRegisterPrompt(deps.logger, server, getClient, scopes);
   const register = { tool, resource, resourceTemplate, prompt };
   void register; // suppress unused warnings
 
-  tool(tool$pet_updatePet);
-  tool(tool$pet_addPet);
-  tool(tool$pet_findPetsByStatus);
-  tool(tool$pet_findPetsByTags);
-  tool(tool$pet_getPetById);
-  tool(tool$pet_deletePet);
-  tool(tool$pet_uploadFile);
-  tool(tool$store_getInventory);
-  tool(tool$store_placeOrder);
-  tool(tool$store_getOrderById);
-  tool(tool$store_deleteOrder);
-  tool(tool$user_createUser);
-  tool(tool$user_createUsersWithListInput);
-  tool(tool$user_loginUser);
-  tool(tool$user_logoutUser);
-  tool(tool$user_getUserByName);
-  tool(tool$user_updateUser);
-  tool(tool$user_deleteUser);
+  tool(tool$petUpdatePet);
+  tool(tool$petAddPet);
+  tool(tool$petFindPetsByStatus);
+  tool(tool$petFindPetsByTags);
+  tool(tool$petGetPetById);
+  tool(tool$petDeletePet);
+  tool(tool$petUploadFile);
+  tool(tool$storeGetInventory);
+  tool(tool$storePlaceOrder);
+  tool(tool$storeGetOrderById);
+  tool(tool$storeDeleteOrder);
+  tool(tool$userCreateUser);
+  tool(tool$userCreateUsersWithListInput);
+  tool(tool$userLoginUser);
+  tool(tool$userLogoutUser);
+  tool(tool$userGetUserByName);
+  tool(tool$userUpdateUser);
+  tool(tool$userDeleteUser);
 
   return server;
 }
